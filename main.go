@@ -16,13 +16,14 @@ func main() {
 	}
 	defer conn.Close(context.Background())
 	
-	var name string
+	//dto implementation
+	var person Person
 
-	err = conn.QueryRow(context.Background(), "select name from persons where id=$1", 1).Scan(&name)
+	err = conn.QueryRow(context.Background(), "select name, job from persons where id=$1", 1).Scan(&person.name, &person.job)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "QueryRow failed: %v\n", err)
 		os.Exit(1)
 	}
 
-	fmt.Println(name)
+	fmt.Println(person)
 }
