@@ -1,7 +1,7 @@
 package main
 
 type Person struct {
-	id string
-	name string
-	job string
+	Id string `json:"id"`
+	Name string
+	Job string
 }
